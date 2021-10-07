@@ -1,5 +1,7 @@
 y = 1
 x = 1
+coin=0
+
 def up(y):
     y += 1
     return y
@@ -14,14 +16,20 @@ def left(x):
     return x
 
 
-
 while x != 3 or y != 1:
-    
+
+
     if x == 1 and y == 1:
         print("You can travel: (N)orth.")
         allowed=["N"]
 
     elif x == 1 and y == 2:
+        while ask:
+            answer = input("Pull a lever (y/n): ")
+            if answer.lower() == "y":
+                coin += 1
+                print(f"You received 1 coin, your total is now {coin}.")
+            ask=False
         print("You can travel: (N)orth or (E)ast or (S)outh.")
         allowed=["N","E","S"]
 
@@ -34,14 +42,32 @@ while x != 3 or y != 1:
         allowed=["N"]
 
     elif x == 2 and y == 2:
+        while ask:
+            answer = input("Pull a lever (y/n): ")
+            if answer.lower() == "y":
+                coin += 1
+                print(f"You received 1 coin, your total is now {coin}.")
+            ask = False
         print("You can travel: (S)outh or (W)est.")
         allowed=["W","S"]
 
     elif x == 2 and y == 3:
+        while ask:
+            answer = input("Pull a lever (y/n): ")
+            if answer.lower() == "y":
+                coin += 1
+                print(f"You received 1 coin, your total is now {coin}.")
+            ask = False
         print("You can travel: (E)ast or (W)est.")
         allowed=["E","W"]
 
     elif x == 3 and y == 2:
+        while ask:
+            answer = input("Pull a lever (y/n): ")
+            if answer.lower() == "y":
+                coin += 1
+                print(f"You received 1 coin, your total is now {coin}.")
+            ask = False
         print("You can travel: (N)orth or (S)outh.")
         allowed=["N","S"]
 
@@ -51,6 +77,7 @@ while x != 3 or y != 1:
 
     direction = input("Direction: ")
     if direction.upper() in allowed:
+        ask = True
         if direction.upper() == "N":
             y=up(y)
         elif direction.upper() == "S":
@@ -61,7 +88,8 @@ while x != 3 or y != 1:
             x=left(x)
     else:
         print("Not a valid direction!")
+        ask=False
 
 
 
-print("Victory!")
+print(f"Victory! Total coins {coin}.")
