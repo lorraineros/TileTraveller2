@@ -1,7 +1,10 @@
+import random
+
 def play():
     y = 1
     x = 1
     coin=0
+    moves=0
 
     def up(y):
         y += 1
@@ -16,6 +19,8 @@ def play():
         x -= 1
         return x
 
+    seed=int(input("Input seed: "))
+    random.seed(seed)
     while x != 3 or y != 1:
 
         if x == 1 and y == 1:
@@ -24,7 +29,8 @@ def play():
 
         elif x == 1 and y == 2:
             while ask:
-                answer = input("Pull a lever (y/n): ")
+                answer = random.choice(["y", "n"])
+                print(f"Pull a lever (y/n): {answer}")
                 if answer.lower() == "y":
                     coin += 1
                     print(f"You received 1 coin, your total is now {coin}.")
@@ -42,7 +48,8 @@ def play():
 
         elif x == 2 and y == 2:
             while ask:
-                answer = input("Pull a lever (y/n): ")
+                answer = random.choice(["y", "n"])
+                print(f"Pull a lever (y/n): {answer}")
                 if answer.lower() == "y":
                     coin += 1
                     print(f"You received 1 coin, your total is now {coin}.")
@@ -52,7 +59,8 @@ def play():
 
         elif x == 2 and y == 3:
             while ask:
-                answer = input("Pull a lever (y/n): ")
+                answer = random.choice(["y", "n"])
+                print(f"Pull a lever (y/n): {answer}")
                 if answer.lower() == "y":
                     coin += 1
                     print(f"You received 1 coin, your total is now {coin}.")
@@ -62,7 +70,8 @@ def play():
 
         elif x == 3 and y == 2:
             while ask:
-                answer = input("Pull a lever (y/n): ")
+                answer = random.choice(["y", "n"])
+                print(f"Pull a lever (y/n): {answer}")
                 if answer.lower() == "y":
                     coin += 1
                     print(f"You received 1 coin, your total is now {coin}.")
@@ -74,9 +83,11 @@ def play():
             print("You can travel: (S)outh or (W)est.")
             allowed=["W","S"]
 
-        direction = input("Direction: ")
+        direction = random.choice(["n", "e", "s", "w"])
+        print(f"Direction: {direction}")
         if direction.upper() in allowed:
             ask = True
+            moves +=1
             if direction.upper() == "N":
                 y=up(y)
             elif direction.upper() == "S":
@@ -87,8 +98,9 @@ def play():
                 x=left(x)
         else:
             print("Not a valid direction!")
+            moves += 1
             ask=False
-    print(f"Victory! Total coins {coin}.")
+    print(f"Victory! Total coins {coin}. Moves {moves}.")
 
 play()
 ask=input("Play again (y/n): ")
